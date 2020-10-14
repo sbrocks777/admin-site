@@ -9,18 +9,17 @@
             <ng-template matStepLabel>Basic Details</ng-template>
             <mat-form-field class="example-full-width">
                 <mat-label>Event Name</mat-label>
-                <input type="text" matInput placeholder="Event Name" required>
+                <input type="text" formControlName="eventName" matInput placeholder="Event Name" required>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event Description</mat-label>
-                <textarea matInput placeholder="Event Description" required
-                    cols="3"></textarea>
+                <textarea matInput formControlName="eventDescription" placeholder="Event Description" required cols="3"></textarea>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event Category</mat-label>
-                <mat-select>
+                <mat-select formControlName="eventCategory" >
                     <mat-option>-- None --</mat-option>
                     <mat-option value="m">Music</mat-option>
                     <mat-option value="d">Dance</mat-option>
@@ -29,43 +28,51 @@
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event City</mat-label>
-                <input type="text" matInput placeholder="Event City" required>
+                <input type="text" formControlName="eventCity" matInput placeholder="Event City" required>
             </mat-form-field>
 
 
             <!-- Date selection & time Selection -->
-            <mat-form-field>
-                <mat-label>Choose Event Starting date</mat-label>
-                <input matInput [matDatepicker]="picker">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+            <div class="col-2">
+                <div class="date-picker">
+                    <div>Start Date</div>
+                    <mat-form-field>
+                        <mat-label>Choose Event Starting date</mat-label>
+                        <input matInput formControlName="eventStartDate" [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
 
-            <mat-form-field>
-                <mat-label>Choose Event Ending date</mat-label>
-                <input matInput [matDatepicker]="picker1">
-                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+                    <mat-form-field class="">
+                        <mat-label>Event Starting Time</mat-label>
+                        <input type="time" matInput formControlName="eventStartTime" placeholder="Event City" required>
+                    </mat-form-field>
+                </div>
 
-            <mat-form-field class="example-full-width">
-                <mat-label>Event Starting Time</mat-label>
-                <input type="time" matInput placeholder="Event City" required>
-            </mat-form-field>
+                <div class="date-picker">
+                    <div>End Date</div>
+                    <mat-form-field>
+                        <mat-label>Choose Event Ending date</mat-label>
+                        <input matInput formControlName="eventEndDate" [matDatepicker]="picker1">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-                <mat-label>Event Ending Time</mat-label>
-                <input type="time" matInput placeholder="Event City" required>
-            </mat-form-field>
+                    <mat-form-field class="">
+                        <mat-label>Event Ending Time</mat-label>
+                        <input type="time" matInput formControlName="eventEndTime" placeholder="Event City" required>
+                    </mat-form-field>
+                </div>
+            </div>
             <!-- End Data & Time Selection -->
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event Seats Limit</mat-label>
-                <input type="number" matInput placeholder="Event City" required>
+                <input type="number" matInput formControlName="eventSeatsLimit" placeholder="Event Seats Limit" required>
             </mat-form-field>
 
             <div>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-raised-button matStepperNext>Next</button>
             </div>
         </form>
     </mat-step>
@@ -74,36 +81,45 @@
     <!-- Second Form Group -->
     <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
         <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Media Stuff</ng-template>
+            <ng-template matStepLabel>More Details</ng-template>
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event Organizer Name</mat-label>
-                <input type="text" matInput placeholder="Event City" required>
+                <input type="text"  formControlName="eventOrganizerName"  matInput placeholder="Event Organizer Name" required>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event Organizer Email</mat-label>
-                <input type="text" matInput placeholder="Event City" required>
+                <input type="email"  formControlName="eventOrganizerEmail"  matInput placeholder="Event Organizer Email" required>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event Organizer Phone Number</mat-label>
-                <input type="text" matInput placeholder="Event City" required>
+                <input type="number"  formControlName="eventOrganizerPhoneNumber"  matInput placeholder="Event Organizer Phone Number" required>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
-            <mat-label>Select Payment Option</mat-label>
-            <mat-select>
-                <mat-option>-- None --</mat-option>
-                <mat-option value="online">online</mat-option>
-                <mat-option value="offline">offline</mat-option>
-            </mat-select>
+                <mat-label>Select Payment Option</mat-label>
+                <mat-select formControlName="eventPaymentOption">
+                    <mat-option>-- None --</mat-option>
+                    <mat-option value="online">online</mat-option>
+                    <mat-option value="offline">offline</mat-option>
+                </mat-select>
             </mat-form-field>
 
+            <mat-form-field class="example-full-width">
+                <mat-label>Event Thumbnail Poster</mat-label>
+                <input type="text"  formControlName="eventThumbnail"  matInput placeholder="Event ThumbnailPoster" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Event Banner Poster</mat-label>
+                <input type="text"  formControlName="eventBanner"  matInput placeholder="Event Banner Poster" required>
+            </mat-form-field>
 
             <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-raised-button matStepperPrevious>Back</button>
+                <button mat-raised-button matStepperNext>Next</button>
             </div>
         </form>
     </mat-step>
@@ -111,8 +127,8 @@
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
         <div>
-            <button mat-button >Reset</button>
-            <button mat-button color="primary">Create new book</button>
+            <button mat-raised-button>Reset</button>
+            <button mat-raised-button color="primary">Create new book</button>
         </div>
     </mat-step>
 </mat-horizontal-stepper>

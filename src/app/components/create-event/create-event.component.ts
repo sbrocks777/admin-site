@@ -7,8 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent implements OnInit {
-  isLinear = false;
-  isEditable = false;
+  isEditable = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
@@ -33,7 +32,9 @@ export class CreateEventComponent implements OnInit {
       eventOrganizerName: ['', [Validators.required]],
       eventOrganizerEmail: ['', [Validators.required]],
       eventOrganizerPhoneNumber: ['', [Validators.required]],
-      eventPaymentOption: ['', Validators.required]
+      eventThumbnail: ['', [Validators.required]],
+      eventBanner: ['', [Validators.required]],
+      eventPaymentOption: ['', [Validators.required]]
     })
   }
 
