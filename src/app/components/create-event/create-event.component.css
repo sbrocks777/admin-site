@@ -30,6 +30,10 @@
   padding: 1em;
 }
 
+.mx-2 {
+  margin: 0px 1em;
+}
+
 @media only screen and (max-width: 549px) {
   .col-2 {
     display: grid;

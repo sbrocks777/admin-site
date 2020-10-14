@@ -10,25 +10,42 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Event Name</mat-label>
                 <input type="text" formControlName="eventName" matInput placeholder="Event Name" required>
+                <mat-error
+                    *ngIf="ffgc.eventName.hasError('required') && (ffgc.eventName.dirty || ffgc.eventName.touched)">
+                    Event name is required
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event Description</mat-label>
-                <textarea matInput formControlName="eventDescription" placeholder="Event Description" required cols="3"></textarea>
+                <textarea matInput formControlName="eventDescription" placeholder="Event Description" required
+                    cols="3"></textarea>
+                <mat-error
+                    *ngIf="ffgc.eventDescription.hasError('required') && (ffgc.eventDescription.dirty || ffgc.eventDescription.touched)">
+                    Event Descrition is required
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event Category</mat-label>
-                <mat-select formControlName="eventCategory" >
+                <mat-select formControlName="eventCategory">
                     <mat-option>-- None --</mat-option>
-                    <mat-option value="m">Music</mat-option>
-                    <mat-option value="d">Dance</mat-option>
+                    <mat-option *ngFor="let category of (categories | async)" [value]="category.name">
+                        {{ category.name }}</mat-option>
                 </mat-select>
+                <mat-error
+                    *ngIf="ffgc.eventCategory.hasError('required') && (ffgc.eventCategory.dirty || ffgc.eventCategory.touched)">
+                    Event category is required
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event City</mat-label>
                 <input type="text" formControlName="eventCity" matInput placeholder="Event City" required>
+                <mat-error
+                    *ngIf="ffgc.eventCity.hasError('required') && (ffgc.eventCity.dirty || ffgc.eventCity.touched)">
+                    Event city is required
+                </mat-error>
             </mat-form-field>
 
 
@@ -41,11 +58,19 @@
                         <input matInput formControlName="eventStartDate" [matDatepicker]="picker">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
+                        <mat-error
+                            *ngIf="ffgc.eventStartDate.hasError('required') && (ffgc.eventStartDate.dirty || ffgc.eventStartDate.touched)">
+                            Event starting date is required
+                        </mat-error>
                     </mat-form-field>
 
                     <mat-form-field class="">
                         <mat-label>Event Starting Time</mat-label>
                         <input type="time" matInput formControlName="eventStartTime" placeholder="Event City" required>
+                        <mat-error
+                            *ngIf="ffgc.eventStartTime.hasError('required') && (ffgc.eventStartTime.dirty || ffgc.eventStartTime.touched)">
+                            Event strating time is required
+                        </mat-error>
                     </mat-form-field>
                 </div>
 
@@ -56,11 +81,19 @@
                         <input matInput formControlName="eventEndDate" [matDatepicker]="picker1">
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
+                        <mat-error
+                            *ngIf="ffgc.eventEndDate.hasError('required') && (ffgc.eventEndDate.dirty || ffgc.eventEndDate.touched)">
+                            Event end date is required
+                        </mat-error>
                     </mat-form-field>
 
                     <mat-form-field class="">
                         <mat-label>Event Ending Time</mat-label>
                         <input type="time" matInput formControlName="eventEndTime" placeholder="Event City" required>
+                        <mat-error
+                            *ngIf="ffgc.eventStartTime.hasError('required') && (ffgc.eventStartTime.dirty || ffgc.eventStartTime.touched)">
+                            Event ending time is required
+                        </mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -68,11 +101,16 @@
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event Seats Limit</mat-label>
-                <input type="number" matInput formControlName="eventSeatsLimit" placeholder="Event Seats Limit" required>
+                <input type="number" matInput formControlName="eventSeatsLimit" placeholder="Event Seats Limit"
+                    required>
+                <mat-error
+                    *ngIf="ffgc.eventSeatsLimit.hasError('required') && (ffgc.eventSeatsLimit.dirty || ffgc.eventSeatsLimit.touched)">
+                    Event Seats Limit is required
+                </mat-error>
             </mat-form-field>
 
             <div>
-                <button mat-raised-button matStepperNext>Next</button>
+                <button mat-raised-button matStepperNext [disabled]="firstFormGroup.invalid">Next</button>
             </div>
         </form>
     </mat-step>
@@ -85,17 +123,40 @@
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event Organizer Name</mat-label>
-                <input type="text"  formControlName="eventOrganizerName"  matInput placeholder="Event Organizer Name" required>
+                <input type="text" formControlName="eventOrganizerName" matInput placeholder="Event Organizer Name"
+                    required>
+                <mat-error
+                    *ngIf="sfgc.eventOrganizerName.hasError('required') && (sfgc.eventOrganizerName.dirty || sfgc.eventOrganizerName.touched)">
+                    Event organizer name is required
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event Organizer Email</mat-label>
-                <input type="email"  formControlName="eventOrganizerEmail"  matInput placeholder="Event Organizer Email" required>
+                <input type="email" formControlName="eventOrganizerEmail" matInput placeholder="Event Organizer Email"
+                    required>
+                <mat-error
+                    *ngIf="sfgc.eventOrganizerEmail.hasError('required') && (sfgc.eventOrganizerEmail.dirty || sfgc.eventOrganizerEmail.touched)">
+                    Event organizer email is required
+                </mat-error>
+                <mat-error
+                    *ngIf="sfgc.eventOrganizerEmail.hasError('email') && (sfgc.eventOrganizerEmail.dirty || sfgc.eventOrganizerEmail.touched)">
+                    email is badly formatted
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event Organizer Phone Number</mat-label>
-                <input type="number"  formControlName="eventOrganizerPhoneNumber"  matInput placeholder="Event Organizer Phone Number" required>
+                <input type="number" formControlName="eventOrganizerPhoneNumber" matInput
+                    placeholder="Event Organizer Phone Number" required>
+                <mat-error
+                    *ngIf="sfgc.eventOrganizerPhoneNumber.hasError('required') && (sfgc.eventOrganizerPhoneNumber.dirty || sfgc.eventOrganizerPhoneNumber.touched)">
+                    Event organizer phone number is required
+                </mat-error>
+                <mat-error
+                    *ngIf="sfgc.eventOrganizerPhoneNumber.hasError('minlength') && (sfgc.eventOrganizerPhoneNumber.dirty || sfgc.eventOrganizerPhoneNumber.touched)">
+                    Required 10 Digits
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
@@ -105,21 +166,35 @@
                     <mat-option value="online">online</mat-option>
                     <mat-option value="offline">offline</mat-option>
                 </mat-select>
+
+                <mat-error
+                    *ngIf="sfgc.eventPaymentOption.hasError('required') && (sfgc.eventPaymentOption.dirty || sfgc.eventPaymentOption.touched)">
+                    Payment Method is required
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
-                <mat-label>Event Thumbnail Poster</mat-label>
-                <input type="text"  formControlName="eventThumbnail"  matInput placeholder="Event ThumbnailPoster" required>
+                <mat-label>Event Thumbnail Poster Url</mat-label>
+                <input type="url" formControlName="eventThumbnail" matInput placeholder="Event ThumbnailPoster"
+                    required>
+                <mat-error
+                    *ngIf="sfgc.eventThumbnail.hasError('required') && (sfgc.eventThumbnail.dirty || sfgc.eventThumbnail.touched)">
+                    Event Poster URL is required
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
-                <mat-label>Event Banner Poster</mat-label>
-                <input type="text"  formControlName="eventBanner"  matInput placeholder="Event Banner Poster" required>
+                <mat-label>Event Banner Poster Url</mat-label>
+                <input type="text" formControlName="eventBanner" matInput placeholder="Event Banner Poster" required>
+                <mat-error
+                    *ngIf="sfgc.eventBanner.hasError('required') && (sfgc.eventBanner.dirty || sfgc.eventBanner.touched)">
+                    Event Banner URL is required
+                </mat-error>
             </mat-form-field>
 
             <div>
-                <button mat-raised-button matStepperPrevious>Back</button>
-                <button mat-raised-button matStepperNext>Next</button>
+                <button mat-raised-button matStepperPrevious class="mx-2">Back</button>
+                <button mat-raised-button matStepperNext class="mx-2" [disabled]="secondFormGroup.invalid">Next</button>
             </div>
         </form>
     </mat-step>
@@ -127,8 +202,8 @@
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
         <div>
-            <button mat-raised-button>Reset</button>
-            <button mat-raised-button color="primary">Create new book</button>
+            <button mat-raised-button (click)="stepper.reset()">Reset</button>
+            <button mat-raised-button class="mx-2" color="primary" (click)="createEvent()">Create new book</button>
         </div>
     </mat-step>
 </mat-horizontal-stepper>
