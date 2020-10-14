@@ -16,9 +16,10 @@ import { SharedModule } from './shared/shared.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
+import { ErrPageComponent } from './components/err-page/err-page.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, LoginComponent, CreateEventComponent],
+  declarations: [AppComponent, DashboardComponent, LoginComponent, CreateEventComponent, ErrPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
