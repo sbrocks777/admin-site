@@ -1,0 +1,10 @@
+table {
+  width: 100%;
+}
+
+.fill-space {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5em;
+}
