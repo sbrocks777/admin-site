@@ -1,0 +1,25 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <img src="../../../assets/images/lock.svg" height="100px">
+    <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="pat@example.com" formControlName="email" autocomplete="off">
+        <mat-error *ngIf="email.invalid && email.dirty">
+            You must enter a valid email address
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password.invalid && password.dirty">
+            Password must be at least 6 characters long
+        </mat-error>
+    </mat-form-field>
+    <button mat-flat-button color="primary" [disabled]="loginForm.invalid || loading" type="submit">Login</button>
+
+    <mat-error class="server-error">{{ serverMessage }}</mat-error>
+</form>

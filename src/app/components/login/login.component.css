@@ -1,0 +1,21 @@
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    margin: 0 auto;
+    margin-top: 3em;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 0px 0px 11px 3px #dedede;
+}
+
+form img {margin-bottom: 1.8em }
+
+.mat-form-field {
+    margin-bottom: 0.7em;
+}
+
+.server-error {
+    margin-top: 8px;
+    text-align: center;
+}
