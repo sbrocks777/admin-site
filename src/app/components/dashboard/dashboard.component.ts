@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 
 export class DashboardComponent implements OnInit {
-  displayedColumns: string[] = ['index', 'eventName', 'isActive', 'isFeatured', 'action'];
+  displayedColumns: string[] = ['index', 'eventName', 'startDate', 'endDate', 'isActive', 'isFeatured', 'action'];
   dataSource: any[];
 
   constructor(private es: EventsService) {}
