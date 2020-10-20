@@ -16,10 +16,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const modules = [
   CommonModule,
@@ -38,7 +42,11 @@ const modules = [
   MatSelectModule,
   MatOptionModule,
   MatNativeDateModule,
-  MatTableModule
+  MatTableModule,
+  MatSlideToggleModule,
+  MatCheckboxModule,
+  MatMenuModule,
+  MatProgressBarModule
   // MatMomentDateModule
 ];
 

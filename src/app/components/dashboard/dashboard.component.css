@@ -8,3 +8,10 @@ table {
   align-items: center;
   margin: 1.5em;
 }
+
+.loading::after {
+  content: '';
+  display: block;
+  padding: 10px;
+  background: #e8e8e8;
+}
