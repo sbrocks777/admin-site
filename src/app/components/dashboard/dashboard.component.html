@@ -28,7 +28,7 @@
 
         <!-- Start date  Column -->
         <ng-container matColumnDef="startDate">
-            <th mat-header-cell *matHeaderCellDef> Event Name </th>
+            <th mat-header-cell *matHeaderCellDef> Start Date </th>
             <td mat-cell *matCellDef="let element">
                 <ng-container *ngIf="element.eventStartDate">
                     {{element.eventStartDate.seconds * 1000 | date:'mediumDate' }} 
@@ -39,7 +39,7 @@
 
         <!-- End date  Column -->
         <ng-container matColumnDef="endDate">
-            <th mat-header-cell *matHeaderCellDef> Event Name </th>
+            <th mat-header-cell *matHeaderCellDef> End Date </th>
             <td mat-cell *matCellDef="let element">
                 <ng-container *ngIf="element.eventEndDate">
                     {{element.eventEndDate.seconds * 1000 | date: 'mediumDate'}} 
