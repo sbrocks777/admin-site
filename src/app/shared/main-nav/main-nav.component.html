@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container mat-app-background" [ngClass]="{'dark-theme': isDarkTheme}">
   <mat-sidenav #drawer class="sidenav" 
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'">
@@ -18,6 +18,11 @@
       <span>Dashboard</span>
       <span class="fill-space"></span>
       <button mat-button *ngIf="(authService.user | async)" (click)="authService.logout()">Logout</button>
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="changeTheme()">
+        <mat-icon aria-label="Side nav toggle icon">
+          {{ isDarkTheme ? 'wb_sunny': 'nights_stay' }}
+        </mat-icon>
+      </button>
     </mat-toolbar>
     <!-- Add Content Here -->
     <ng-content></ng-content>

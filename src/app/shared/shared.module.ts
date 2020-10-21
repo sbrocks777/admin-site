@@ -46,7 +46,7 @@ const modules = [
   MatSlideToggleModule,
   MatCheckboxModule,
   MatMenuModule,
-  MatProgressBarModule
+  MatProgressBarModule,
   // MatMomentDateModule
 ];
 
@@ -55,6 +55,6 @@ const components = [MainNavComponent];
 @NgModule({
   declarations: [...components],
   imports: [...modules],
-  exports: [...modules, ...components],
+  exports: [...modules, ...components]
 })
 export class SharedModule {}
