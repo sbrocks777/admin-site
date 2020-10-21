@@ -19,3 +19,11 @@ form img {margin-bottom: 1.8em }
     margin-top: 8px;
     text-align: center;
 }
+
+
+@media only screen and (max-width: 375px) {
+    form {
+        border: none;
+        box-shadow: none;
+    }
+}

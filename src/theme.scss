@@ -19,9 +19,11 @@ $light-them:   mat-light-theme($dark-primary, $dark-accent, $dark-warn);
 
 .dark-theme {
   @include angular-material-theme($dark-theme);
+  transition: all 1s ease-in-out;
 }
 
 .light-theme {
-  @include angular-material-theme($light-them);
+  @include angular-material-theme($candy-app-theme);
+  transition: all 1s ease-in-out;
 }
 
