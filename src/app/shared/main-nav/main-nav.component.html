@@ -4,10 +4,22 @@
     mode="over">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="create-event">Create Events</a>
-      <a mat-list-item routerLink="dashboard">All Events</a>
-      <a mat-list-item href="#">Manage User's</a>
-      <a mat-list-item href="#">Logs</a>
+      <a mat-list-item routerLink="create-event" (click)="drawer.toggle()">
+        <mat-icon>add_box</mat-icon>&nbsp;&nbsp;
+        Add Category
+      </a>
+      <a mat-list-item routerLink="dashboard" (click)="drawer.toggle()">
+        <mat-icon>view_list</mat-icon>&nbsp;&nbsp;
+        All Events
+      </a>
+      <a mat-list-item href="#" (click)="drawer.toggle()">
+        <mat-icon>people</mat-icon>&nbsp;&nbsp;
+        Manage User's
+      </a>
+      <a mat-list-item href="#" (click)="drawer.toggle()">
+        <mat-icon>history</mat-icon>&nbsp;&nbsp;
+        Logs
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -18,6 +18,8 @@ import { LoginComponent } from './components/login/login.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { ErrPageComponent } from './components/err-page/err-page.component';
 
+import { AngularCropperjsModule } from 'angular-cropperjs';
+
 @NgModule({
   declarations: [AppComponent, DashboardComponent, LoginComponent, CreateEventComponent, ErrPageComponent],
   imports: [
@@ -27,6 +29,7 @@ import { ErrPageComponent } from './components/err-page/err-page.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularCropperjsModule,
     SharedModule
   ],
   providers: [],

@@ -55,7 +55,7 @@
                     <div>Start Date</div>
                     <mat-form-field>
                         <mat-label>Choose Event Starting date</mat-label>
-                        <input matInput formControlName="eventStartDate" [matDatepicker]="picker">
+                        <input matInput [min]="min" formControlName="eventStartDate" [matDatepicker]="picker">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-error
@@ -78,7 +78,7 @@
                     <div>End Date</div>
                     <mat-form-field>
                         <mat-label>Choose Event Ending date</mat-label>
-                        <input matInput formControlName="eventEndDate" [matDatepicker]="picker1">
+                        <input matInput [min]="min"  formControlName="eventEndDate" [matDatepicker]="picker1">
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
                         <mat-error
@@ -172,6 +172,22 @@
                     Payment Method is required
                 </mat-error>
             </mat-form-field>
+
+            <!-- <div class="col-2">
+                <div class="ang-crop">
+                    <angular-cropper class="ang-crop" *ngIf="poster && posterCroppingMode" #Poster
+                        [cropperOptions]="posterConfig" [imageUrl]="posterUrl"></angular-cropper>
+                </div>
+                <img [src]="croppedPosterUrl" *ngIf="poster && !posterCroppingMode" class="image-preview" />
+                <br />
+                <button class="btn btn-outline-primary" *ngIf="posterCroppingMode" (click)="cropPoster($event)">
+                    Crop / Select
+                </button>
+                <button class="btn btn-outline-primary" *ngIf="poster && !posterCroppingMode"
+                    (click)="posterCroppingMode = true">
+                    Readjust image
+                </button>
+            </div> -->
 
             <mat-form-field class="example-full-width">
                 <mat-label>Event Thumbnail Poster Url</mat-label>

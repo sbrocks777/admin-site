@@ -22,6 +22,8 @@
     "@angular/platform-browser": "~9.1.6",
     "@angular/platform-browser-dynamic": "~9.1.6",
     "@angular/router": "~9.1.6",
+    "angular-cropperjs": "^1.0.2",
+    "cropperjs": "^1.5.9",
     "firebase": "^7.22.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
