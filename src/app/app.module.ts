@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 
 import { SharedModule } from './shared/shared.module';
@@ -19,9 +20,10 @@ import { CreateEventComponent } from './components/create-event/create-event.com
 import { ErrPageComponent } from './components/err-page/err-page.component';
 
 import { AngularCropperjsModule } from 'angular-cropperjs';
+import { ImgupComponent } from './components/imgup/imgup.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, LoginComponent, CreateEventComponent, ErrPageComponent],
+  declarations: [AppComponent, DashboardComponent, LoginComponent, CreateEventComponent, ErrPageComponent, ImgupComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,6 +31,7 @@ import { AngularCropperjsModule } from 'angular-cropperjs';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
     AngularCropperjsModule,
     SharedModule
   ],

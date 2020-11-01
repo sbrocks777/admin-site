@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   }
 
   delete(element: any) {
-    alert(element.id);
+    alert(`Are you shure want to delete: ${element.id}`);
+    this.es.deleteEvent(element.id);
   }
 }

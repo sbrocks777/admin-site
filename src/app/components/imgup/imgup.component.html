@@ -1,0 +1,19 @@
+<div class="form-group">
+    <label for="exampleInput5">Upload image for poster.</label>
+    <br />
+    <label>(Image ratio should be <strong>2:3</strong> and resolution must be minimum Width:<strong> 240px</strong>,
+        Height:<strong> 360px</strong>)</label> <br />
+    <input type="file" (change)="getPoster($event)" accept=".png,.jpg,.jpeg" />
+</div>
+<div class="ang-crop">
+    <angular-cropper class="ang-crop" *ngIf="poster && posterCroppingMode" #Poster [cropperOptions]="posterConfig"
+        [imageUrl]="posterUrl"></angular-cropper>
+</div>
+<img [src]="croppedPosterUrl" *ngIf="poster && !posterCroppingMode" class="image-preview" />
+<br />
+<button class="btn btn-outline-primary" *ngIf="posterCroppingMode" (click)="cropPoster($event)">
+    Crop / Select
+</button>
+<button class="btn btn-outline-primary" *ngIf="poster && !posterCroppingMode" (click)="posterCroppingMode = true">
+    Readjust image
+</button>

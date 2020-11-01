@@ -11,9 +11,9 @@
 }
 
 .mat-stepper-horizontal {
-    margin: 0 auto;
-    box-shadow: 0px 0px 7px 5px #efefef;
-    max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0px 0px 7px 5px #efefef;
+  max-width: 900px;
 }
 
 .col-2 {
@@ -32,6 +32,26 @@
 
 .mx-2 {
   margin: 0px 1em;
+}
+
+.ang-crop {
+  max-width: 200px;
+}
+
+.message {
+  margin: auto;
+  max-width: 500px;
+  text-align: center;
+}
+
+.image-preview-poster {
+  max-width: 200px;
+  margin: 1em 0em;
+}
+
+.image-preview-banner {
+  max-width: 300px;
+  margin: 1em 0em;
 }
 
 @media only screen and (max-width: 549px) {

@@ -4,6 +4,7 @@ import { EventsService } from 'src/app/service/events.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CropperComponent } from 'angular-cropperjs';
+import { min } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-event',
@@ -21,51 +22,55 @@ export class CreateEventComponent implements OnInit {
 
   min: Date = new Date();
 
-  // Cropper Config
-  // posterConfig = {
-  //   aspectRatio: 2 / 3,
-  //   dragMode: 'move',
-  //   background: true,
-  //   movable: true,
-  //   rotatable: true,
-  //   scalable: true,
-  //   zoomable: true,
-  //   viewMode: 1,
-  //   checkImageOrigin: true,
-  //   checkCrossOrigin: true,
-  // };
+  /**
+   *  Poster & bannber Configuration and Variable
+   */
+  poster: any;
+  posterUrl: any;
+  croppedPosterUrl: any;
+  posterCroppingMode = false;
+  posterSelected = false;
 
-  // bannerConfig = {
-  //   aspectRatio: 16 / 9,
-  //   dragMode: 'move',
-  //   background: true,
-  //   movable: true,
-  //   rotatable: true,
-  //   scalable: true,
-  //   zoomable: true,
-  //   viewMode: 1,
-  //   checkImageOrigin: true,
-  //   checkCrossOrigin: true,
-  // };
+  banner: any;
+  bannerUrl: any;
+  croppedBannerUrl: any;
+  bannerCroppingMode = false;
+  bannerSelected = false;
 
-  // posterUrl;
-  // bannerUrl;
-  // croppedPosterUrl;
-  // croppedBannerUrl;
-  // posterCroppingMode = false;
-  // bannerCroppingMode = false;
-  // posterSelected = false;
-  // bannerSelected = false;
-  // imagesSelected = this.posterSelected && this.bannerSelected;
+  posterConfig = {
+    aspectRatio: 2 / 3,
+    dragMode: 'move',
+    background: true,
+    movable: true,
+    rotatable: true,
+    scalable: true,
+    zoomable: true,
+    viewMode: 1,
+    checkImageOrigin: true,
+    checkCrossOrigin: true,
+  };
+
+  bannerConfig = {
+    aspectRatio: 16 / 9,
+    dragMode: 'move',
+    background: true,
+    movable: true,
+    rotatable: true,
+    scalable: true,
+    zoomable: true,
+    viewMode: 1,
+    checkImageOrigin: true,
+    checkCrossOrigin: true,
+  };
 
   constructor(
     private fb: FormBuilder,
-    private eventSevice: EventsService,
+    private eventService: EventsService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.categories = this.eventSevice.getCategories();
+    this.categories = this.eventService.getCategories();
     this.firstFormGroup = this.fb.group({
       eventName: ['', [Validators.required]],
       eventDescription: ['', [Validators.required]],
@@ -75,6 +80,7 @@ export class CreateEventComponent implements OnInit {
       eventStartTime: ['', [Validators.required]],
       eventEndTime: ['', [Validators.required]],
       eventSeatsLimit: ['', [Validators.required]],
+      eventTicketPrice: ['', [Validators.required]],
       eventCity: ['', [Validators.required]],
     });
 
@@ -83,7 +89,8 @@ export class CreateEventComponent implements OnInit {
       eventOrganizerEmail: ['', [Validators.required, Validators.email]],
       eventOrganizerPhoneNumber: [
         '',
-        [Validators.required, Validators.minLength(10)],
+        [Validators.required, Validators.minLength(10), 
+         Validators.required, Validators.maxLength(10)],
       ],
       eventThumbnail: ['', [Validators.required]],
       eventBanner: ['', [Validators.required]],
@@ -99,12 +106,72 @@ export class CreateEventComponent implements OnInit {
     return this.secondFormGroup['controls'];
   }
 
-  createEvent() {
-    this.eventSevice
-      .createEvent(this.firstFormGroup.value, this.secondFormGroup.value)
-      .then(() => {
-        this.router.navigate(['/dashboard']);
-      })
-      .catch((err) => alert(err.message));
+  cropPoster(event) {
+    event.preventDefault();
+    // this.resultResult = this.angularCropper.imageUrl;
+    // this.resultImage = this.angularCropper.cropper.getCroppedCanvas()
+    // console.log(this.resultImage);
+    //this.angularCropper.exportCanvas();
+    this.posterSelected = true;
+    this.posterCroppingMode = false;
+    this.croppedPosterUrl = this.angularCropperPoster.cropper
+      .getCroppedCanvas()
+      .toDataURL('image/webp', 0.3);
+  }
+
+  /*  croppedPoster(event: ImageCropperResult) {
+  this.croppedPosterUrl = this.angularCropper.cropper.getCroppedCanvas().toDataURL('image/jpeg');
+  } */
+
+  cropBanner(event) {
+    event.preventDefault();
+    // this.resultResult = this.angularCropper.imageUrl;
+    // this.resultImage = this.angularCropper.cropper.getCroppedCanvas()
+    // console.log(this.resultImage);
+    this.bannerSelected = true;
+    this.bannerCroppingMode = false;
+    this.croppedBannerUrl = this.angularCropperBanner.cropper
+      .getCroppedCanvas()
+      .toDataURL('image/webp', 0.3);
+  }
+
+  /* croppedBanner(event: ImageCropperResult) {
+  this.croppedBannerUrl = this.angularCropper.cropper.getCroppedCanvas().toDataURL('image/jpeg');
+  } */
+
+  readFileAsync(file: any) {
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = reject;
+    });
+  }
+
+  async getPoster(file: any) {
+    this.posterCroppingMode = true;
+    this.poster = file;
+    this.posterUrl = await this.readFileAsync(file.target.files[0]);
+  }
+
+  async getBanner(file: any) {
+    this.bannerCroppingMode = true;
+    this.banner = file;
+    this.bannerUrl = await this.readFileAsync(file.target.files[0]);
+  }
+
+  async createEvent() {
+    if(this.firstFormGroup.valid && this.secondFormGroup.valid) {
+      try {
+        await this.eventService.createEvent(this.firstFormGroup.value, this.secondFormGroup.value)
+        await this.eventService.uploadFile(this.croppedBannerUrl, 'banner');
+        await this.eventService.uploadFile(this.croppedPosterUrl, 'poster');
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    this.router.navigate(['/dashboard']);
   }
 }
