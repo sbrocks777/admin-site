@@ -1,26 +1,46 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate } from '@angular/fire/auth-guard';
+import {
+  redirectUnauthorizedTo,
+  redirectLoggedInTo,
+  canActivate,
+} from '@angular/fire/auth-guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { ErrPageComponent } from './components/err-page/err-page.component';
-import { ImgupComponent } from './components/imgup/imgup.component';
+import { CreateCategoriesComponent } from './components/create-categories/create-categories.component';
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['dashboard']);
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
-  { path: '', redirectTo:'dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent, ...canActivate(redirectUnauthorizedToLogin) },
-  { path: 'create-event', component: CreateEventComponent, ...canActivate(redirectUnauthorizedToLogin) },
-  { path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToDashboard) },
-  { path: 'tc', component: ImgupComponent },
-  { path: '**', component: ErrPageComponent }
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    ...canActivate(redirectUnauthorizedToLogin),
+  },
+  {
+    path: 'create-event',
+    component: CreateEventComponent,
+    ...canActivate(redirectUnauthorizedToLogin),
+  },
+  {
+    path: 'create-category',
+    component: CreateCategoriesComponent,
+    ...canActivate(redirectUnauthorizedToLogin),
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    ...canActivate(redirectLoggedInToDashboard),
+  },
+  { path: '**', component: ErrPageComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

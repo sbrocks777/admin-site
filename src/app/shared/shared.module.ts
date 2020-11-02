@@ -24,6 +24,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const modules = [
   CommonModule,
@@ -47,6 +49,8 @@ const modules = [
   MatCheckboxModule,
   MatMenuModule,
   MatProgressBarModule,
+  MatDialogModule,
+  MatSnackBarModule
   // MatMomentDateModule
 ];
 
@@ -55,6 +59,6 @@ const components = [MainNavComponent];
 @NgModule({
   declarations: [...components],
   imports: [...modules],
-  exports: [...modules, ...components]
+  exports: [...modules, ...components],
 })
 export class SharedModule {}

@@ -1,0 +1,20 @@
+<mat-toolbar class="fill-space">
+    <span>{{cs.form.controls['id'].value?"Modify Employee":"New Employee"}}</span>
+    <button class="btn-dialog-close" mat-button (click)="onClose()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+<form [formGroup]="cs.form" class="normal-form" (submit)="onSubmit()">
+    <div class="controles-container">
+        <input type="hidden" formControlName="id">
+        <mat-form-field>
+            <input formControlName="name" matInput placeholder="Category Name*">
+            <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        <app-imgup (file)="getFile($event)"></app-imgup>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="cs.form.invalid">Submit</button>
+        <button mat-raised-button type="button" color="warn" (click)="onClear()">Clear</button>
+    </div>
+</form>

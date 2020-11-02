@@ -106,5 +106,12 @@ export class EventsService {
    */
   deleteEvent(id: string) {
     return this.db.collection('events').doc(id).delete();
+    }
+
+  /**
+  * Delete Category
+  */
+  deleteCategory(id: string) {
+    return this.db.collection('categories').doc(id).delete();
   }
 }

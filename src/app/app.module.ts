@@ -21,9 +21,24 @@ import { ErrPageComponent } from './components/err-page/err-page.component';
 
 import { AngularCropperjsModule } from 'angular-cropperjs';
 import { ImgupComponent } from './components/imgup/imgup.component';
+import { CreateCategoriesComponent } from './components/create-categories/create-categories.component';
+import { DialogComponent } from './components/create-categories/dialog/dialog.component';
+import { EventsService } from './service/events.service';
+import { AuthService } from './service/auth.service';
+import { CategoryService } from './service/category.service';
 
+const components = [
+  AppComponent, 
+  DashboardComponent, 
+  LoginComponent, 
+  CreateEventComponent, 
+  ErrPageComponent, 
+  ImgupComponent, 
+  CreateCategoriesComponent,
+  DialogComponent
+]
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, LoginComponent, CreateEventComponent, ErrPageComponent, ImgupComponent],
+  declarations: [...components],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,7 +50,8 @@ import { ImgupComponent } from './components/imgup/imgup.component';
     AngularCropperjsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [EventsService, AuthService, CategoryService],
   bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule {}
