@@ -4,7 +4,6 @@ import { EventsService } from 'src/app/service/events.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CropperComponent } from 'angular-cropperjs';
-import { min } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-event',

@@ -19,15 +19,15 @@ export class DashboardComponent implements OnInit {
   }
 
   updateIsActive(element: any) {
-    this.es.updateIsActive(element.id, element.isActive);
+    this.es.updateIsActive(element.id, element.isActive, element.eventName);
   }
 
   updateIsFeatured(element: any) {
-    this.es.updateIsFeatured(element.id, element.isFeatured);
+    this.es.updateIsFeatured(element.id, element.isFeatured, element.eventName);
   }
 
   delete(element: any) {
     alert(`Are you shure want to delete: ${element.id}`);
-    this.es.deleteEvent(element.id);
+    this.es.deleteEvent(element.id, element.eventName);
   }
 }

@@ -1,0 +1,111 @@
+<div class="fill-space">
+    <h1>All Events</h1>
+    <div>
+        <a class="btn" [id]="id" color="primary" (click)="exportData()">
+            Export to CSV
+        </a>
+        <a class="btn" [id]="id+'report'" hidden>
+            Download
+        </a>
+    </div>
+</div>
+
+<div *ngIf="!dataSource">
+    <table mat-table [dataSource]="[{}, {}, {}, {}, {}]" class="mat-elevation-z1">
+
+        <!--- Note that these columns can be defined in any order.
+  The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Index Column -->
+        <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let index = index">{{index+1}}</td>
+        </ng-container>
+
+        <!-- Full name Column -->
+        <ng-container matColumnDef="fullName">
+            <th mat-header-cell *matHeaderCellDef> Full Name </th>
+            <td mat-cell *matCellDef="let element">
+                <app-skeleton-loader Cwidth="100px"></app-skeleton-loader>
+            </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element">
+                <app-skeleton-loader Cwidth="100px"></app-skeleton-loader>
+            </td>
+        </ng-container>
+
+        <!-- Full name Column -->
+        <ng-container matColumnDef="joinDate">
+            <th mat-header-cell *matHeaderCellDef> Full Name </th>
+            <td mat-cell *matCellDef="let element">
+                <app-skeleton-loader Cwidth="100px"></app-skeleton-loader>
+            </td>
+        </ng-container>
+
+        <!-- Start date  Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Revoke Permission </th>
+            <td mat-cell *matCellDef="let element">
+                <app-skeleton-loader Cwidth="25px"></app-skeleton-loader>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+<div *ngIf="dataSource">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+
+        <!-- Index Column -->
+        <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let index = index">{{index+1}}</td>
+        </ng-container>
+
+        <!-- Full name Column -->
+        <ng-container matColumnDef="fullName">
+            <th mat-header-cell *matHeaderCellDef> Full Name </th>
+            <td mat-cell *matCellDef="let element">
+                <ng-container>{{element.firstName}} {{ element.lastName}}</ng-container>
+            </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email Address</th>
+            <td mat-cell *matCellDef="let element">
+                <ng-container>{{element.email}} </ng-container>
+            </td>
+        </ng-container>
+
+        <!-- Full name Column -->
+        <ng-container matColumnDef="joinDate">
+            <th mat-header-cell *matHeaderCellDef> Full Name </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.joinDate.seconds * 1000 | date: 'mediumDate' }}
+            </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Revoke Permission </th>
+            <td mat-cell *matCellDef="let element">
+                <ng-container *ngIf="element.eventName">
+                    <mat-checkbox [checked]="element.isPaid" (change)="updateFeesStatus(element)">
+                        {{ element.isPaid ? 'Paid' : 'Pending'}}
+                    </mat-checkbox>
+                </ng-container>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <h1 style="text-align: center" *ngIf="dataSource.length === 0">No data</h1>
+</div>

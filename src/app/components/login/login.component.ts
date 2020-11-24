@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/auth.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private notification: NotificationService,
     private router: Router
   ) {}
 
@@ -42,9 +44,10 @@ export class LoginComponent implements OnInit {
     const password = this.password.value;
 
     try {
-      await this.authService
-        .login(email, password)
-        .then(() => this.router.navigate(['dashboard']));
+      await this.authService.login(email, password).then(() => {
+        this.router.navigate(['dashboard']);
+        this.notification.success('Login Successfully!');
+      });
     } catch (err) {
       this.serverMessage = err.message;
     }

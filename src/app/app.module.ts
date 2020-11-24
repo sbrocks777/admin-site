@@ -24,8 +24,11 @@ import { ImgupComponent } from './components/imgup/imgup.component';
 import { CreateCategoriesComponent } from './components/create-categories/create-categories.component';
 import { DialogComponent } from './components/create-categories/dialog/dialog.component';
 import { EventsService } from './service/events.service';
-import { AuthService } from './service/auth.service';
 import { CategoryService } from './service/category.service';
+import { ManageStffComponent } from './components/manage-stff/manage-stff.component';
+import { CoreModule } from './core/core.module';
+import { LogsComponent } from './components/logs/logs.component';
+import { AttendeesComponent } from './components/attendees/attendees.component';
 
 const components = [
   AppComponent, 
@@ -38,7 +41,7 @@ const components = [
   DialogComponent
 ]
 @NgModule({
-  declarations: [...components],
+  declarations: [...components, ManageStffComponent, LogsComponent, AttendeesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -48,9 +51,10 @@ const components = [
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularCropperjsModule,
-    SharedModule
+    SharedModule,
+    CoreModule
   ],
-  providers: [EventsService, AuthService, CategoryService],
+  providers: [EventsService, CategoryService],
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent]
 })

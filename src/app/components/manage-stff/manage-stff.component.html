@@ -1,0 +1,96 @@
+<form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+    <div style="margin: 2em 0em;">
+        <mat-form-field>
+            <mat-label>Enter Email Address</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="email" autocomplete="off">
+            <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                {{email.errors.required ? "This field is required" : "Email is badly formatted"}}
+            </mat-error>
+        </mat-form-field>
+        <button style="margin: 0em 1em;" type="submit" mat-flat-button color="primary"
+            [disabled]="emailForm.invalid">Confirm identity</button>
+    </div>
+</form>
+<hr style="border-top: 2px dashed #999; margin-bottom: 1em;">
+
+<div *ngIf="!dataSource">
+    <table mat-table [dataSource]="[{}, {}, {}, {}, {}]" class="mat-elevation-z1">
+
+        <!--- Note that these columns can be defined in any order.
+  The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Index Column -->
+        <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let index = index">{{index+1}}</td>
+        </ng-container>
+
+        <!-- Full name Column -->
+        <ng-container matColumnDef="fullName">
+            <th mat-header-cell *matHeaderCellDef> Full Name </th>
+            <td mat-cell *matCellDef="let element">
+                <app-skeleton-loader Cwidth="100px"></app-skeleton-loader>
+            </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element">
+                <app-skeleton-loader Cwidth="100px"></app-skeleton-loader>
+            </td>
+        </ng-container>
+
+        <!-- Start date  Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Revoke Permission </th>
+            <td mat-cell *matCellDef="let element">
+                <app-skeleton-loader Cwidth="25px"></app-skeleton-loader>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+<div *ngIf="dataSource">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+
+        <!-- Index Column -->
+        <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let index = index">{{index+1}}</td>
+        </ng-container>
+
+        <!-- Full name Column -->
+        <ng-container matColumnDef="fullName">
+            <th mat-header-cell *matHeaderCellDef> Full Name </th>
+            <td mat-cell *matCellDef="let element">
+                <ng-container>{{element.firstName}} {{ element.lastName}}</ng-container>
+            </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email Address</th>
+            <td mat-cell *matCellDef="let element">
+                <ng-container>{{element.email}} </ng-container>
+            </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Revoke Permission </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-flat-button (click)="remove(element.id, element.email)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <h1 style="text-align: center" *ngIf="dataSource.length === 0">No data</h1>
+</div>

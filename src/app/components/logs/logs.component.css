@@ -1,0 +1,95 @@
+.logs-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-y: auto;
+  font-family: "Lucida Console", Monaco, monospace, sans-serif;
+}
+
+.animated {
+  animation: fadein 260ms;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+.title-bar {
+  padding: 5px;
+  font-weight: 600;
+}
+
+.dark-theme.title-bar {
+  border-bottom: solid 1px #3c3c3c;
+  background: #1f1f1f;
+}
+
+.light-theme.title-bar {
+  border-bottom: solid 1px #a8acad;
+  background: #dbdfe0;
+}
+
+.msg-item {
+  display: block;
+  margin-left: 6px;
+  font-size: 0.85em;
+}
+
+.msg-list {
+  margin: 0;
+  height: 100%;
+}
+
+.light-theme {
+  color: #212121;
+  background: #ecf0f1;
+}
+.light-theme .msg-info {
+  color: #2980b9;
+}
+.light-theme .msg-err {
+  color: #c0392b;
+}
+.light-theme .msg-success {
+  color: #27ae60;
+}
+.light-theme .msg-warn {
+  color: #f39c12;
+}
+
+.dark-theme {
+  color: #ecf0f1;
+  background: #212121;
+}
+.dark-theme .msg-info {
+  color: #3498db;
+}
+.dark-theme .msg-err {
+  color: #e74c3c;
+}
+.dark-theme .msg-success {
+  color: #2ecc71;
+}
+.dark-theme .msg-warn {
+  color: #f1c40f;
+}
+
+button.float-right.c-btn {
+  background: lightgoldenrodyellow;
+  border: none;
+  border-radius: 3px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+}
+
+button.float-right.c-btn:hover {
+  opacity: 1;
+}

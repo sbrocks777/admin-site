@@ -1,0 +1,14 @@
+<div class="title-bar dark-theme">&#9002; Logs <button style="float: right" (click)="clear()">Clear</button></div>
+<div #container class="logs-container dark-theme">
+    <span class="msg-item msg-warn animated" *ngFor="let log of (logs | async)">
+        <span>
+            <!-- <ng-container *ngSwitchCase="'ERR'">&#10008;</ng-container> -->
+            <!-- <ng-container *ngSwitchCase="'SUCCESS'">&#10004;</ng-container> -->
+            <ng-container>&#10097;</ng-container>
+            <!-- <ng-container *ngSwitchCase="'WARN'">&#8252;</ng-container> -->
+            <!-- <ng-container *ngSwitchCase="'INFO'">&#8505;</ng-container> -->
+        </span>
+
+        [{{log.updateDate.seconds * 1000 | date: "short" }}]: {{log.email}} -> {{ log.action }} -> {{log.eventName}}
+    </span>
+</div>
