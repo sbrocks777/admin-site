@@ -44,7 +44,7 @@ export class AuthService {
               this.router.navigate(['events']);
             } else {
               this.signOut();
-              reject(new Error("Permission Denied"))
+              reject(new Error('Permission Denied'));
             }
           });
         },
@@ -54,7 +54,12 @@ export class AuthService {
   }
 
   signOut() {
-    this.afAuth.signOut();
+    this.afAuth
+      .signOut()
+      .then(() => {
+        this.router.navigate(['/login']);
+      })
+      .catch((err) => console.log(err));
   }
 
   ///// Role-based Authorization //////

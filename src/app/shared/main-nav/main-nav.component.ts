@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/core/auth.service';
+import { User } from 'src/app/core/user';
 
 @Component({
   selector: 'app-main-nav',
@@ -12,6 +13,7 @@ import { AuthService } from 'src/app/core/auth.service';
 })
 export class MainNavComponent implements OnInit {
   isDarkTheme: boolean = false;
+  user: User;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -27,7 +29,9 @@ export class MainNavComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isDarkTheme = localStorage.getItem('theme') === 'dark-theme' ? true : false;
+    this.isDarkTheme =
+      localStorage.getItem('theme') === 'dark-theme' ? true : false;
+    this.authService.user$.subscribe((u) => (this.user = u));
   }
 
   changeTheme() {
